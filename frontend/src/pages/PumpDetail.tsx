@@ -57,6 +57,14 @@ export default function PumpDetail() {
           <p className="text-muted mt-1">{pump.model} · {pump.location ?? '—'}</p>
           <p className="text-muted text-sm mt-1">Ish soatlari: {Number(pump.running_hours).toLocaleString()} · Seriya: {pump.serial_number}</p>
         </div>
+        {/* QR kod — mexanik telefonda skanerlab shu sahifani ochadi */}
+        <div className="flex flex-col items-center gap-1">
+          <img
+            src={`https://api.qrserver.com/v1/create-qr-code/?size=90x90&bgcolor=151b26&color=e2e8f0&data=${encodeURIComponent(window.location.href)}`}
+            alt="QR kod" width={90} height={90} className="rounded-lg border border-line"
+          />
+          <span className="text-muted text-[10px]">Skanerlash</span>
+        </div>
       </div>
 
       <div>

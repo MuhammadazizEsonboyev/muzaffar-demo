@@ -36,4 +36,25 @@ export const api = {
   inventory: () => req<import('../types').InventoryItem[]>('/inventory'),
   updateInventory: (id: string, body: any) =>
     req(`/inventory/${id}`, { method: 'PATCH', body: JSON.stringify(body) }),
+
+  // ---------------- YANGI MODULLAR ----------------
+  mnemoscheme: () => req<{ pumps: import('../types').MnemoPump[]; workshops: import('../types').Workshop[] }>('/mnemoscheme'),
+
+  workOrders: (params: Record<string, string> = {}) =>
+    req<import('../types').WorkOrder[]>(`/work-orders?${new URLSearchParams(params)}`),
+  workOrder: (id: string) => req<import('../types').WorkOrder>(`/work-orders/${id}`),
+  createWorkOrder: (body: any) =>
+    req<import('../types').WorkOrder>('/work-orders', { method: 'POST', body: JSON.stringify(body) }),
+  updateWorkOrder: (id: string, body: any) =>
+    req(`/work-orders/${id}`, { method: 'PATCH', body: JSON.stringify(body) }),
+  addWorkOrderPart: (id: string, body: any) =>
+    req(`/work-orders/${id}/parts`, { method: 'POST', body: JSON.stringify(body) }),
+
+  shiftLogs: () => req<import('../types').ShiftLog[]>('/shift-logs'),
+  createShiftLog: (body: any) =>
+    req<import('../types').ShiftLog>('/shift-logs', { method: 'POST', body: JSON.stringify(body) }),
+
+  analytics: () => req<import('../types').Analytics>('/analytics'),
+  partConsumption: () => req<import('../types').PartConsumption>('/part-consumption'),
+  preventiveSchedule: () => req<import('../types').PreventiveItem[]>('/preventive-schedule'),
 };
