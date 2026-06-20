@@ -35,7 +35,7 @@ async function tick() {
       outlet_pressure: fault ? jitter((p.baseline_outlet_pressure ?? 6) * 0.7, 0.4) : jitter(p.baseline_outlet_pressure ?? 6, 0.5),
       flow_rate: fault ? jitter(base * 0.7, 10) : jitter(base, 15),
       current_a: fault ? jitter((p.rated_current ?? 90) * 1.15, 8) : jitter((p.rated_current ?? 90) * 0.85, 10),
-      rpm: jitter(2950, 60),
+      rpm: Math.round(jitter(2950, 60)),
     };
 
     try {
